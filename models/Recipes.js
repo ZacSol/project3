@@ -13,6 +13,10 @@ const RecipesSchema=new Schema({
     directions:{
         type:String,
         required:"Cooking Directions are required."
+    },
+    favorite:{
+        type:Boolean,
+        default:false
     }
 });
 
