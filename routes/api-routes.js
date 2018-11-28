@@ -36,8 +36,13 @@ module.exports = function (app) {
         });
     });
     // gets favorite recipes
+    app.get('/api/recipes/all',function(req,res){
+        db.Recipes.find({favorite:true})
+        .then(function(data){
+            res.json(data);
+        });
+    });
     // finds one recipe to update
-
 
     // Gathers items from the shoppingList 
     app.get('/api/shoppinglist',function(req,res){

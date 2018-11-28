@@ -17,6 +17,9 @@ const RecipesSchema=new Schema({
     favorite:{
         type:Boolean,
         default:false
+    },
+    userId:{
+        type:String,
     }
 });
 
