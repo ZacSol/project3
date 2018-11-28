@@ -102,14 +102,14 @@ export default class CreateAccModal extends React.Component {
                 <FormGroup>
                     <Label for='newPass'>Password</Label>
                     <Input type='password' name='newPass' id="newPass" placeholder='Create a password.' onChange={this.handleInputChange}/>
-                    <Input type='checkbox' className='modalCheckbox' onClick={()=>{this.displayPassword('newPass')}}/>
-                    {' '}Show password
+                    <Input type='checkbox' className='modalCheckbox' id='newPassCheck' onClick={()=>{this.displayPassword('newPass')}}/>
+                    <Label className='showPassLabel' for='newPassCheck' check>Show password</Label>
                 </FormGroup>
                 <FormGroup>
                     <Input type='password' name='newPassConf' id="newPassConf" placeholder='Re-enter your password.' valid={this.state.passwordsMatch} onChange={this.handleInputChange}/>
                     <FormFeedback valid>The passwords match.</FormFeedback>
                     <Input type='checkbox' className='modalCheckbox' id='newPassConfCheck' onClick={()=>{this.displayPassword('newPassConf')}}/>
-                    <Label for='newPassConfCheck' check>Show password</Label>
+                    <Label className='showPassLabel' for='newPassConfCheck' check>Show password</Label>
                 </FormGroup>
             </Form>
           </ModalBody>

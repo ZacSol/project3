@@ -28,6 +28,9 @@ input{
 .nav-link{
   float:right;
 }
+.showPassLabel{
+  padding-left: 20px;
+}
 
 /* IDs */
 #loginForm{
@@ -38,4 +41,7 @@ input{
 }
 #welcomeHead{
   font-size: 3.5rem;
+}
+#newPassCheck,#newPassConfCheck{
+  margin-left: 0px;
 }
