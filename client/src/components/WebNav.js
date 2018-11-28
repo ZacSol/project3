@@ -26,7 +26,7 @@ export default class Example extends React.Component {
     return (
       <div>
         <Navbar color="secondary" light expand="md">
-          <NavbarBrand className="text-white" href="">RecipeBox</NavbarBrand>
+          <NavbarBrand className="text-white" href="#" onClick={()=>{this.props.handleRecipeClick()}}>RecipeBox</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

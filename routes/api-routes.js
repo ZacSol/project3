@@ -9,8 +9,8 @@ module.exports = function (app) {
             res.json({success:true});
         }).catch(function(err){
             res.json(err);
-        })
-    })
+        });
+    });
     // Used to check usersDb for login information, returns the user's _id
     app.post('/api/users/login',function(req,res){
         db.Users.find(req.body)

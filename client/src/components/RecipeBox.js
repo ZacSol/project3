@@ -20,7 +20,9 @@ export default class RecipeBox extends Component{
         return(
             <div>
                 <h1>This is the RecipeBox.</h1>
-
+                {this.recipes.map((recipe,index)=>{
+                    
+                })}
             </div>
         )
     };

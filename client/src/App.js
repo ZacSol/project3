@@ -33,10 +33,10 @@ class App extends Component {
     });
   };
   handleRecipeClick=()=>{
-    this.setState({showRecipes:true,showShopList:false})
+    this.setState({showRecipes:true})
   };
   handleShopListClick=()=>{
-    this.setState({showRecipes:false,showShopList:true})
+    this.setState({showRecipes:false})
   };
   render() {
     return (
