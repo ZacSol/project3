@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import Recipe from '../components/Recipe.js';
+import Recipe from './Recipe.js';
 import * as $ from 'axios';
 
 export default class RecipeBox extends Component{

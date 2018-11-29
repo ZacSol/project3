@@ -33,20 +33,19 @@ export default class Login extends Component{
     render() {
         return (
             <div>
-                <div id='emptyAboveLogin'></div>
-                <h1 id='welcomeHead'>Welcome to RecipeBox!</h1><br/>
+                <h1 id='welcomeHead'>Welcome to RecipeBox!</h1><br />
                 <Form id='loginForm'>
                     <FormGroup>
-                        <Label for="loginUsername">Username</Label>
-                    <Input type="text" name="username" placeholder="" id="loginUsername" onChange={this.handleInputChange}/>
+                        <Label for="loginUsername"></Label>
+                        <Input type="text" name="username" placeholder="Username" id="loginUsername" onChange={this.handleInputChange} style={{ textAlign: 'center' }} />
                     </FormGroup>
                     <FormGroup>
-                        <Label for='loginPassword'>Password</Label>
-                    <Input type="password" name="password" placeholder="" id='loginPassword' onChange={this.handleInputChange}/>
+                        <Label for='loginPassword'></Label>
+                        <Input type="password" name="password" placeholder="Password" id='loginPassword' onChange={this.handleInputChange} style={{ textAlign: 'center' }} />
                     </FormGroup>
-                    <Button color='secondary' id='loginBtn' onClick={(event)=>{event.preventDefault();this.checkValidUser()}}>Log In</Button>
+                    <Button color='secondary' id='loginBtn' onClick={(event) => { event.preventDefault(); this.checkValidUser() }}>Log In</Button>
                 </Form>
-                <br/>
+                <br />
             </div>
         )
     };

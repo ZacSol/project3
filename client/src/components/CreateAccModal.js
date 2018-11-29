@@ -20,7 +20,10 @@ export default class CreateAccModal extends React.Component {
   
   toggle() {
     this.setState({
-      modal: !this.state.modal
+      modal: !this.state.modal,
+      btnEnabled:false,
+      passwordsMatch:false,
+      invalidName:false
     });
   };
   handleInputChange=(event)=>{
@@ -89,7 +92,7 @@ export default class CreateAccModal extends React.Component {
   render() {
     return (
       <div>
-        <a className='text-primary' onClick={this.toggle}>Click here to create an account.</a>
+        <a href='#' className='text-primary raiseMeUp' onClick={this.toggle}>Click here to create an account.</a>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Create RecipeBox Account</ModalHeader>
           <ModalBody>
@@ -101,7 +104,7 @@ export default class CreateAccModal extends React.Component {
                 </FormGroup>
                 <FormGroup>
                     <Label for='newPass'>Password</Label>
-                    <Input type='password' name='newPass' id="newPass" placeholder='Create a password.' onChange={this.handleInputChange}/>
+                    <Input type='password' name='newPass' id="newPass" valid={this.state.passwordsMatch} placeholder='Create a password.' onChange={this.handleInputChange}/>
                     <Input type='checkbox' className='modalCheckbox' id='newPassCheck' onClick={()=>{this.displayPassword('newPass')}}/>
                     <Label className='showPassLabel' for='newPassCheck' check>Show password</Label>
                 </FormGroup>

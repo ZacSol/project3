@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import Login from './components/Login';
+import LoginPage from './pages/LoginPage.js';
 import RecipeBox from './components/RecipeBox';
 import MobileNav from './components/MobileNav.js';
 import WebNav from './components/WebNav.js';
 import MediaQuery from 'react-responsive';
-import CreateAccModal from './components/CreateAccModal.js';
 import ShopList from './components/ShopList';
 import './App.css';
 
@@ -40,8 +39,8 @@ class App extends Component {
   };
   render() {
     return (
-      <div className="App">
-        {this.state.isLoggedIn===false ? <div><Login handleLogin={this.handleLogin}/> <CreateAccModal/></div>: 
+      <div className="App" id='backgroundDiv'>
+        {this.state.isLoggedIn===false ? <LoginPage handleLogin={this.handleLogin}/>: 
         <div>
         <MediaQuery maxDeviceWidth={1023}>
             <MobileNav handleRecipeClick={this.handleRecipeClick} handleShopListClick={this.handleShopListClick} handleLogout={this.handleLogout}/>

@@ -1,12 +1,6 @@
 import React from 'react';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink } from 'reactstrap';
+import {Collapse,Navbar,NavbarToggler,NavbarBrand,Nav,NavItem,NavLink}from 'reactstrap';
+import AddRecipe from './AddRecipe.js';
 
 export default class Example extends React.Component {
   constructor(props) {
@@ -33,6 +27,7 @@ export default class Example extends React.Component {
               <NavItem>
                 <NavLink className="text-white" href="#" onClick={()=>{this.props.handleRecipeClick()}}>My Recipes</NavLink>
               </NavItem>
+              <NavItem><AddRecipe/></NavItem>
               <NavItem>
                 <NavLink className="text-white" href="#" onClick={()=>{this.props.handleShopListClick()}}>ShoppingList</NavLink>
               </NavItem>
