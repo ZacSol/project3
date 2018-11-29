@@ -32,13 +32,18 @@ export default class CreateAccModal extends React.Component {
     this.setState({
         [event.target.name]:event.target.value
     });
-    this.enableSubmitBtn()
     this.doPasswordsMatch(el);
+    this.enableSubmitBtn()
   };
   enableSubmitBtn=()=>{
-    if(this.state.newUsername&&this.state.newPass&&this.state.newPassConf){
+    const pass1=document.getElementById('newPass');      
+    const pass2=document.getElementById('newPassConf');      
+
+    if(this.state.newUsername&&this.state.newPass&&this.state.newPassConf&&pass1.value===pass2.value){
       this.setState({btnEnabled:true});
-    };
+    }else{
+      this.setState({btnEnabled:false})
+    }
   };
   // when typing into the boxes, check that the passwords match
   doPasswordsMatch=(element)=>{
