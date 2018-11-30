@@ -19,13 +19,16 @@ export default class Example extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="secondary" light expand="md">
+        <Navbar color="secondary" dark expand="md">
           <NavbarBrand className="text-white" href="#" onClick={()=>{this.props.handleRecipeClick()}}>RecipeBox</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
                 <NavLink className="text-white" href="#" onClick={()=>{this.props.handleRecipeClick()}}>My Recipes</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink className="text-white" href="#" onClick={()=>{this.props.handleFavoriteClick()}}>Favorites</NavLink>
               </NavItem>
               <NavItem><AddRecipe/></NavItem>
               <NavItem>

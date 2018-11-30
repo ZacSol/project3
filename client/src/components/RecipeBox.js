@@ -4,26 +4,33 @@ import * as $ from 'axios';
 
 export default class RecipeBox extends Component{
     state={
+        typeOfRecipes:this.props.typeOfRecipes,
         recipes:[],
     };
     // get call; all, favorite, or one
     getRecipes=(type)=>{
-        $.get(`/api/recipes/${type}`)
+        $.get(`/api/recipes/${type}/${this.props.userId}`)
         .then((result)=>{
             // console.log(result);
             this.setState({recipes:result.data});
         });
     };
+    renderAll=()=>{
+        this.getRecipes('all');
+    };
+    renderFaves=()=>{
+        this.getRecipes('favorite');
+    };
     componentDidMount(){
-        this.getRecipes("all");
+        this.getRecipes(this.props.typeOfRecipes);
     };
     render(){
         return(
             <div>
-                <h1>This is the RecipeBox.</h1>
+                {this.state.recipes.length===0 ? <h1 className="giveBackgroundColor margins10Per">There are no recipes stored yet.</h1> : null }
                 {this.state.recipes.map((recipe,index)=>{
                     return(
-                        <Recipe key={`recipe${index}`} name={recipe.recipeName} ingredients={recipe.ingredients} directions={recipe.directions} favorite={recipe.favorite}/>
+                        <Recipe key={`recipe${index}`} name={recipe.recipeName} ingredients={recipe.ingredients} directions={recipe.directions} favorite={recipe.favorite} renderAll={this.renderAll} renderFaves={this.renderFaves}/>
                     )
                 })}
             </div>

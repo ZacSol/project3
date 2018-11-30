@@ -29,15 +29,15 @@ module.exports = function (app) {
         });
     });
     // gets all recipes
-    app.get('/api/recipes/all',function(req,res){
-        db.Recipes.find({})
+    app.get('/api/recipes/all/:id',function(req,res){
+        db.Recipes.find({userId:req.params.id})
         .then(function(data){
             res.json(data);
         });
     });
     // gets favorite recipes
-    app.get('/api/recipes/all',function(req,res){
-        db.Recipes.find({favorite:true})
+    app.get('/api/recipes/favorite/:id',function(req,res){
+        db.Recipes.find({favorite:true,userId:req.params.id})
         .then(function(data){
             res.json(data);
         });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter,Container,Row,Col,Form,FormGroup,Label,Input,NavLink } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter,Col,Form,FormGroup,Label,Input,NavLink } from 'reactstrap';
 
 export default class AddRecipe extends React.Component {
   constructor(props) {
@@ -7,7 +7,7 @@ export default class AddRecipe extends React.Component {
     this.state = {
       modal: false,
       newName:'',
-      newIngredients:'',
+      newIngredients:[],
       newDirections:'',
     };
 
@@ -19,10 +19,22 @@ export default class AddRecipe extends React.Component {
       modal: !this.state.modal
     });
   }
-  handleInputChange=(e)=>{
+  handleInputChange=(event)=>{
     this.setState({
-      [e.target.name]:e.target.value
+      [event.target.name]:event.target.value
     });
+  };
+  handleKeyPress=(event)=>{
+    if(event.key==="Enter"){
+      // console.log("Enter Pressed");
+      // console.log(event.target.value);
+      this.addIngredientToList(event.target.value);
+      event.target.value="";
+    };
+  };
+  addIngredientToList=(ingredient)=>{
+    console.log(ingredient);
+    
   };
   render() {
     return (
@@ -39,13 +51,16 @@ export default class AddRecipe extends React.Component {
                 </Col>
               </FormGroup>
               <FormGroup row>
-                <Col sm={6}>
+                <Col sm={6}  className="addRightBorder addTopBorder addBottomBorder">
                   <Label for="newIngredients">Ingredients:</Label>
-                  <Input type='text' id='oneNewIngredient' placeholder="Press enter to add ingredient."/>
+                  <Input type='text' id='oneNewIngredient' placeholder="Press enter to add ingredient." onKeyPress={this.handleKeyPress}/>
                 </Col>
-                <Col sm={6} className="addLeftBorder">
+                <Col sm={6} className='addTopBorder addBottomBorder'>
                   <Label for="newDirections">Cooking Instructions:</Label>
-                  <Input type='textarea' name='newDirections' id='newDirections' rows={10} onChange={this.handleInputChange}/>
+                  <Input type='textarea' name='newDirections' id='newDirections' rows={10} onChange={this.handleInputChange}  style={{marginBottom:'10px'}}/>
+                  {/* {this.newIngredients.map((ingredient,index)=>(
+                    <p>{ingredient}</p>
+                  ))} */}
                 </Col>
               </FormGroup>
             </Form>
