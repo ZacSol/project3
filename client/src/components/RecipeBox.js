@@ -30,7 +30,7 @@ export default class RecipeBox extends Component{
                 {this.state.recipes.length===0 ? <h1 className="giveBackgroundColor margins10Per">There are no recipes stored yet.</h1> : null }
                 {this.state.recipes.map((recipe,index)=>{
                     return(
-                        <Recipe key={`recipe${index}`} name={recipe.recipeName} ingredients={recipe.ingredients} directions={recipe.directions} favorite={recipe.favorite} renderAll={this.renderAll} renderFaves={this.renderFaves}/>
+                        <Recipe key={`recipe${index}`} recId={recipe._id} name={recipe.recipeName} ingredients={recipe.ingredients} directions={recipe.directions} favorite={recipe.favorite} renderAll={this.renderAll} renderFaves={this.renderFaves}/>
                     )
                 })}
             </div>

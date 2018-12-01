@@ -19,6 +19,10 @@ export default class Recipe extends Component {
   toggleFavorite=(event)=>{
       // needs to make axios update to favorite bool ***************************
     this.setState({favorite:!this.state.favorite})
+  };
+  deleteRecipe=(event)=>{
+      console.log(event.target);
+      console.log(event.target.name);
   }
 
   render() {
@@ -26,7 +30,7 @@ export default class Recipe extends Component {
         <div>
             <Card style={{marginTop:'10px'}}>
                 <Row style={{paddingTop:'10px'}}>
-                    <Col xs={2} style={{paddingTop:'5px'}} onClick={this.toggle}><FontAwesomeIcon icon={'times'}/></Col>
+                    <Col xs={2} style={{paddingTop:'5px'}} name={this.props.recId} onClick={this.deleteRecipe}><FontAwesomeIcon icon={'times'} name={this.props.recId}/></Col>
                     <Col xs={8}><h3 className="card-title" onClick={this.toggle}>{this.props.name}</h3></Col>
                     <Col xs={2} style={{paddingTop:'5px'}} onClick={this.toggleFavorite}>{this.state.favorite ? <FontAwesomeIcon icon={['fas','star']}/>:<FontAwesomeIcon icon={['far','star']}/>}</Col>
                 </Row>

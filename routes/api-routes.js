@@ -29,20 +29,32 @@ module.exports = function (app) {
         });
     });
     // gets all recipes
-    app.get('/api/recipes/all/:id',function(req,res){
-        db.Recipes.find({userId:req.params.id})
+    app.get('/api/recipes/all/:userId',function(req,res){
+        db.Recipes.find({userId:req.params.userId})
         .then(function(data){
             res.json(data);
         });
     });
     // gets favorite recipes
-    app.get('/api/recipes/favorite/:id',function(req,res){
-        db.Recipes.find({favorite:true,userId:req.params.id})
+    app.get('/api/recipes/favorite/:userId',function(req,res){
+        db.Recipes.find({favorite:true,userId:req.params.userId})
         .then(function(data){
             res.json(data);
         });
     });
-    // finds one recipe to update
+    // finds one recipe to update ********************************
+    // app.put("/api/recipes/one/:recId",req.body,function(req,res){
+    //     db.Recipes.updateOne({_id:req.params.recId})
+    // })
+    // deletes one recipe
+    app.delete('/api/recipes/one/:recId',function(req,res){
+        db.Recipes.deleteOne({_id:req.params.recId})
+        .then(function(data){
+            res.json({success:true});
+        }).catch(function(err){
+            res.json(err)
+        });
+    });
 
     // Gathers items from the shoppingList 
     app.get('/api/shoppinglist',function(req,res){
