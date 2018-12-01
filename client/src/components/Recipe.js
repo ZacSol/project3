@@ -25,9 +25,9 @@ export default class Recipe extends Component {
     .then(function(response){
         console.log(response);
         if(response.data.error){
-            alert(JSON.stringify(response.data.error))
+            alert('There was an error updating the favorite.')
         }else if(response.data.success){
-            console.log("Success")
+            // console.log("Success")
         };
     });
   };

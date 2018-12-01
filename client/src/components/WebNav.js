@@ -2,7 +2,7 @@ import React from 'react';
 import {Collapse,Navbar,NavbarToggler,NavbarBrand,Nav,NavItem,NavLink}from 'reactstrap';
 import AddRecipe from './AddRecipe.js';
 
-export default class Example extends React.Component {
+export default class WebNav extends React.Component {
   constructor(props) {
     super(props);
 

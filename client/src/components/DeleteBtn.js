@@ -3,7 +3,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as $ from 'axios';
 
-export default class ModalExample extends React.Component {
+export default class DeleteBtn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

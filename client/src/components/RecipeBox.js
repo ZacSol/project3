@@ -9,10 +9,10 @@ export default class RecipeBox extends Component{
     };
     // get call; all, favorite, or one
     getRecipes=(type)=>{
-        console.log(type);
+        // console.log(type);
         $.get(`/api/recipes/${type}/${this.props.userId}`)
         .then((result)=>{
-            console.log(result.data);
+            // console.log(result.data);
             this.setState({recipes:result.data});
             // console.log(this.state.recipes)
         });
