@@ -21,8 +21,9 @@ export default class Recipe extends Component {
     this.setState({favorite:!this.state.favorite})
   };
   deleteRecipe=(event)=>{
+      console.log('event.target');
       console.log(event.target);
-      console.log(event.target.name);
+      console.log("event.target.name"+event.target.name);
   }
 
   render() {
