@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { Collapse, CardBody, Card,Row,Col } from 'reactstrap';
+import { Button, Collapse, CardBody, Card,Row,Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default class Recipe extends Component {
@@ -17,23 +17,24 @@ export default class Recipe extends Component {
   }
 
   toggleFavorite=(event)=>{
+      event.preventDefault();
+      console.log(event.target.name);
       // needs to make axios update to favorite bool ***************************
     this.setState({favorite:!this.state.favorite})
   };
   deleteRecipe=(event)=>{
-      console.log('event.target');
-      console.log(event.target);
-      console.log("event.target.name"+event.target.name);
+      event.preventDefault();
+      console.log("event.target.name "+event.target.name);
   }
 
   render() {
     return (
         <div>
             <Card style={{marginTop:'10px'}}>
-                <Row style={{paddingTop:'10px'}}>
-                    <Col xs={2} style={{paddingTop:'5px'}} name={this.props.recId} onClick={this.deleteRecipe}><FontAwesomeIcon icon={'times'} name={this.props.recId}/></Col>
+                <Row>
+                    <Col xs={2} style={{paddingTop:'5px'}}><Button outline color="secondary" name={this.props.recId} onClick={this.deleteRecipe}><FontAwesomeIcon icon={'times'} /></Button></Col>
                     <Col xs={8}><h3 className="card-title" onClick={this.toggle}>{this.props.name}</h3></Col>
-                    <Col xs={2} style={{paddingTop:'5px'}} onClick={this.toggleFavorite}>{this.state.favorite ? <FontAwesomeIcon icon={['fas','star']}/>:<FontAwesomeIcon icon={['far','star']}/>}</Col>
+                    <Col xs={2} style={{paddingTop:'5px'}} onClick={this.toggleFavorite}>{this.state.favorite ? <Button outline color="secondary" name={this.props.recId}><FontAwesomeIcon icon={['fas','star']} name={this.props.recId}/></Button>:<Button outline color="secondary" name={this.props.recId}><FontAwesomeIcon icon={['far','star']} name={this.props.recId}/></Button>}</Col>
                 </Row>
                 <Collapse isOpen={this.state.collapse}>
                     <CardBody>
