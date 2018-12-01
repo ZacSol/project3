@@ -35,6 +35,12 @@ export default class Login extends Component{
             };
         });
     };
+    handleKeypress=(event)=>{
+        if(event.key==="Enter"){
+            // console.log("Enter pressed.");
+            this.checkValidUser();
+        };
+    };
     render() {
         return (
             <div>
@@ -46,7 +52,7 @@ export default class Login extends Component{
                     </FormGroup>
                     <FormGroup>
                         <Label for='loginPassword'></Label>
-                        <Input type="password" name="password" placeholder="Password" id='loginPassword' onChange={this.handleInputChange} style={{ textAlign: 'center' }} />
+                        <Input type="password" name="password" placeholder="Password" id='loginPassword' onChange={this.handleInputChange} style={{ textAlign: 'center' }} onKeyPress={this.handleKeypress}/>
                     </FormGroup>
                     <Button color='secondary' id='loginBtn' onClick={(event) => { event.preventDefault(); this.checkValidUser() }}>Log In</Button>
                 </Form>
