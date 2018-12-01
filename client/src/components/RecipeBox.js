@@ -9,17 +9,13 @@ export default class RecipeBox extends Component{
     };
     // get call; all, favorite, or one
     getRecipes=(type)=>{
+        console.log(type);
         $.get(`/api/recipes/${type}/${this.props.userId}`)
         .then((result)=>{
-            // console.log(result);
+            console.log(result.data);
             this.setState({recipes:result.data});
+            // console.log(this.state.recipes)
         });
-    };
-    renderAll=()=>{
-        this.getRecipes('all');
-    };
-    renderFaves=()=>{
-        this.getRecipes('favorite');
     };
     componentDidMount(){
         this.getRecipes(this.props.typeOfRecipes);
@@ -30,7 +26,7 @@ export default class RecipeBox extends Component{
                 {this.state.recipes.length===0 ? <h1 className="giveBackgroundColor margins10Per">There are no recipes stored yet.</h1> : null }
                 {this.state.recipes.map((recipe,index)=>{
                     return(
-                        <Recipe key={`recipe${index}`} recId={recipe._id} name={recipe.recipeName} ingredients={recipe.ingredients} directions={recipe.directions} favorite={recipe.favorite} renderAll={this.renderAll} renderFaves={this.renderFaves}/>
+                        <Recipe key={`recipe${index}`} recId={recipe._id} name={recipe.recipeName} ingredients={recipe.ingredients} directions={recipe.directions} favorite={recipe.favorite} renderAll={this.renderAll} renderFaves={this.renderFaves} rerender={()=>this.getRecipes(this.state.typeOfRecipes)}/>
                     )
                 })}
             </div>

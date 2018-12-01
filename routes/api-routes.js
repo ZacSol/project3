@@ -43,9 +43,14 @@ module.exports = function (app) {
         });
     });
     // finds one recipe to update ********************************
-    // app.put("/api/recipes/one/:recId",req.body,function(req,res){
-    //     db.Recipes.updateOne({_id:req.params.recId})
-    // })
+    app.put("/api/recipes/one/:recId",function(req,res){
+        db.Recipes.updateOne({_id:req.params.recId},req.body)
+        .then(function(data){
+            res.json({success:true})
+        }).catch(function(err){
+            res.json({error:err});
+        });
+    });
     // deletes one recipe
     app.delete('/api/recipes/one/:recId',function(req,res){
         db.Recipes.deleteOne({_id:req.params.recId})

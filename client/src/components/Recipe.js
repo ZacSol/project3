@@ -1,6 +1,8 @@
 import React,{Component} from 'react';
 import { Button, Collapse, CardBody, Card,Row,Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import DeleteBtn from './DeleteBtn.js';
+import * as $ from 'axios';
 
 export default class Recipe extends Component {
   constructor(props) {
@@ -15,26 +17,31 @@ export default class Recipe extends Component {
   toggle() {
     this.setState({ collapse: !this.state.collapse });
   }
-
-  toggleFavorite=(event)=>{
-      event.preventDefault();
-      console.log(event.target.name);
-      // needs to make axios update to favorite bool ***************************
-    this.setState({favorite:!this.state.favorite})
+  toggleFavoriteDb=(RecipeId)=>{
+    // console.log(RecipeId);      
+    this.setState({favorite:!this.state.favorite});
+    // needs to make axios update to favorite bool 
+    $.put(`/api/recipes/one/${RecipeId}`,{favorite:!this.state.favorite})
+    .then(function(response){
+        console.log(response);
+        if(response.data.error){
+            alert(JSON.stringify(response.data.error))
+        }else if(response.data.success){
+            console.log("Success")
+        };
+    });
   };
-  deleteRecipe=(event)=>{
-      event.preventDefault();
-      console.log("event.target.name "+event.target.name);
-  }
 
   render() {
     return (
         <div>
             <Card style={{marginTop:'10px'}}>
                 <Row>
-                    <Col xs={2} style={{paddingTop:'5px'}}><Button outline color="secondary" name={this.props.recId} onClick={this.deleteRecipe}><FontAwesomeIcon icon={'times'} /></Button></Col>
+                    <Col xs={2} style={{paddingTop:'6px'}}><DeleteBtn recId={this.props.recId} name={this.props.name} rerender={this.props.rerender}/></Col>
+
                     <Col xs={8}><h3 className="card-title" onClick={this.toggle}>{this.props.name}</h3></Col>
-                    <Col xs={2} style={{paddingTop:'5px'}} onClick={this.toggleFavorite}>{this.state.favorite ? <Button outline color="secondary" name={this.props.recId}><FontAwesomeIcon icon={['fas','star']} name={this.props.recId}/></Button>:<Button outline color="secondary" name={this.props.recId}><FontAwesomeIcon icon={['far','star']} name={this.props.recId}/></Button>}</Col>
+
+                    <Col xs={2} style={{paddingTop:'6px'}} onClick={()=>this.toggleFavoriteDb(this.props.recId)}>{this.state.favorite ? <Button outline color="secondary" name={this.props.recId}><FontAwesomeIcon icon={['fas','star']} name={this.props.recId}/></Button>:<Button outline color="secondary" name={this.props.recId}><FontAwesomeIcon icon={['far','star']} name={this.props.recId}/></Button>}</Col>
                 </Row>
                 <Collapse isOpen={this.state.collapse}>
                     <CardBody>

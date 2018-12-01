@@ -36,6 +36,9 @@ input{
   color:black;
   margin: 0px 10%;
 }
+.card-title{
+  padding-top: 5px;
+}
 .addLeftBorder{
   border-left: solid 1px gray;
 }
