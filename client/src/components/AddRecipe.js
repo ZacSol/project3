@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter,Col,Form,FormGroup,Label,Input,NavLink } from 'reactstrap';
 import * as $ from 'axios';
 
+
 export default class AddRecipe extends React.Component {
   constructor(props) {
     super(props);
@@ -60,12 +61,22 @@ export default class AddRecipe extends React.Component {
       directions:this.state.newDirections,
       favorite:false
     };
+    const self=this;
     $.post("/api/recipes/one",newRec)
     .then(function(response){
       console.log(response)
       console.log(response.data.success)
       if(response.data.success){
-        this.toggle();
+        // ***************************NOT WORKING*******************************
+        self.toggle(); 
+        self.props.handleAddItemRerender();
+        self.setState({
+          modal: false,
+          newName:'',
+          newIngredients:[],
+          newDirections:'',
+          btnEnabled:false,
+        });
       }else{
         alert("There was an error posting the information.");
       };

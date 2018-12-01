@@ -6,6 +6,7 @@ export default class Login extends Component{
     state={
         username:"",
         password:"",
+        displayName:"",
     };
     handleInputChange=(event)=>{
         this.setState({
@@ -15,14 +16,18 @@ export default class Login extends Component{
     // checks validity of user credentials, if successful sends data to App.js
     checkValidUser=()=>{
         // console.log("checking user");
-        $.post('/api/users/login',this.state)
+        $.post('/api/users/login',{
+            username:this.state.username.toLowerCase(),
+            password:this.state.password
+        })
         .then((result)=>{
             // console.log(result.data);
             if(result.data[0]){
                 // console.log("confirmed");
                 this.props.handleLogin({
                     id:result.data,
-                    name:this.state.username
+                    name:this.state.username,
+                    displayName:this.state.displayName
                 });
             }else{
                 console.log(result);

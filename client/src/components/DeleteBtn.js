@@ -20,13 +20,14 @@ export default class DeleteBtn extends React.Component {
   }
   deleteRecipe=()=>{
     this.toggle();
-    console.log(this.props.recId);
+    const self=this;
+    // console.log(this.props.recId);
     $.delete(`/api/recipes/one/${this.props.recId}`)
     .then(function(response){ 
         // console.log(response.data.success);
         if(response.data.success===true){
-            console.log("deleted");
-            this.props.rerender();
+            // console.log("deleted");
+            self.props.rerender(); /* This does not work */
         };
     });
   };

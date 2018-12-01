@@ -6,6 +6,9 @@ const UsersSchema=new Schema({
         type:String,
         required:"A username is required."
     },
+    displayName:{
+        type:String
+    },
     password:{
         type:String,
         required:"A password is required."

@@ -23,7 +23,7 @@ export default class Recipe extends Component {
     // needs to make axios update to favorite bool 
     $.put(`/api/recipes/one/${RecipeId}`,{favorite:!this.state.favorite})
     .then(function(response){
-        console.log(response);
+        // console.log(response);
         if(response.data.error){
             alert('There was an error updating the favorite.')
         }else if(response.data.success){
@@ -31,12 +31,15 @@ export default class Recipe extends Component {
         };
     });
   };
+  passRender=()=>{
+      this.props.rerender();
+  }
   render() {
     return (
         <div>
             <Card style={{marginTop:'10px'}}>
                 <Row>
-                    <Col xs={2} style={{paddingTop:'6px'}}><DeleteBtn recId={this.props.recId} name={this.props.name} rerender={this.props.rerender}/></Col>
+                    <Col xs={2} style={{paddingTop:'6px'}}><DeleteBtn recId={this.props.recId} name={this.props.name} rerender={this.passRender}/></Col>
 
                     <Col xs={8}><h3 className="card-title" onClick={this.toggle}>{this.props.name}</h3></Col>
 

@@ -61,7 +61,7 @@ export default class CreateAccModal extends React.Component {
   // after hitting submit button, run validations
   validateUsername=()=>{
     // check if username already exists
-    $.post('/api/users/login',{username:this.state.newUsername})
+    $.post('/api/users/login',{username:this.state.newUsername.toLowerCase()})
     .then((response)=>{
       // console.log(typeof(response.data));
       if(typeof(response.data)==="string"){
@@ -76,7 +76,8 @@ export default class CreateAccModal extends React.Component {
   postNewAccount=()=>{
     // console.log('button clicked');
     $.post('/api/users/create',{
-        username:this.state.newUsername,
+        username:this.state.newUsername.toLowerCase(),
+        displayName:this.state.newUsername,
         password:this.state.newPass
     }).then((response)=>{
         console.log(response)
