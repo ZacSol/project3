@@ -53,7 +53,7 @@ class App extends Component {
       <div className="App" id='backgroundDiv'>
         {this.state.isLoggedIn === false ? <LoginPage handleLogin={this.handleLogin} /> :
           <div>
-            <WebNav handleRecipeClick={this.handleRecipeClick} handleShopListClick={this.handleShopListClick} handleLogout={this.handleLogout} handleFavoriteClick={this.handleFavoriteClick} />
+            <WebNav userId={this.state.userId} handleRecipeClick={this.handleRecipeClick} handleShopListClick={this.handleShopListClick} handleLogout={this.handleLogout} handleFavoriteClick={this.handleFavoriteClick} />
             {this.state.showRecipes === true ? <RecipeBox userId={this.state.userId} typeOfRecipes={this.state.typeOfRecipes} /> : null}
             {this.state.showFavorites === true ? <RecipeBox userId={this.state.userId} typeOfRecipes={this.state.typeOfRecipes} /> : null}
             {this.state.showShopList === true ? <ShopList userId={this.state.userId}/> : null}

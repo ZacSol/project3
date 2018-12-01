@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter,Col,Form,FormGroup,Label,Input,NavLink } from 'reactstrap';
+import * as $ from 'axios';
 
 export default class AddRecipe extends React.Component {
   constructor(props) {
@@ -9,6 +10,7 @@ export default class AddRecipe extends React.Component {
       newName:'',
       newIngredients:[],
       newDirections:'',
+      btnEnabled:false,
     };
 
     this.toggle = this.toggle.bind(this);
@@ -23,9 +25,11 @@ export default class AddRecipe extends React.Component {
     this.setState({
       [event.target.name]:event.target.value
     });
+    this.enableAddBtn();
   };
   handleKeyPress=(event)=>{
     if(event.key==="Enter"){
+      event.preventDefault();
       // console.log("Enter Pressed");
       // console.log(event.target.value);
       this.addIngredientToList(event.target.value);
@@ -33,8 +37,39 @@ export default class AddRecipe extends React.Component {
     };
   };
   addIngredientToList=(ingredient)=>{
-    console.log(ingredient);
-    
+    // console.log(ingredient);
+    const joined=this.state.newIngredients.concat(ingredient);
+    this.setState({newIngredients:joined});
+  };
+  emptyIngredients=(event)=>{
+    event.preventDefault();
+    this.setState({newIngredients:[]});
+  };
+  enableAddBtn=()=>{
+    if(this.state.newName&&this.state.newIngredients.length>0&&this.state.newDirections){
+      this.setState({btnEnabled:true});
+    }else{
+      this.setState({btnEnabled:false});
+    };
+  };
+  postNewRecipe=()=>{
+    const newRec={
+      userId:this.props.userId,
+      recipeName:this.state.newName,
+      ingredients:this.state.newIngredients,
+      directions:this.state.newDirections,
+      favorite:false
+    };
+    $.post("/api/recipes/one",newRec)
+    .then(function(response){
+      console.log(response)
+      console.log(response.data.success)
+      if(response.data.success){
+        this.toggle();
+      }else{
+        alert("There was an error posting the information.");
+      };
+    });
   };
   render() {
     return (
@@ -52,8 +87,11 @@ export default class AddRecipe extends React.Component {
               </FormGroup>
               <FormGroup row>
                 <Col sm={6}  className="addRightBorder addTopBorder addBottomBorder">
-                  <Label for="newIngredients">Ingredients:</Label>
+                  <Label for="newIngredients">Ingredients: <Button color="link" onClick={this.emptyIngredients}>Empty List</Button></Label>
                   <Input type='text' id='oneNewIngredient' placeholder="Press enter to add ingredient." onKeyPress={this.handleKeyPress}/>
+                  {this.state.newIngredients.map((item,index)=>(
+                    <li key={index}>{item}</li>
+                  ))}
                 </Col>
                 <Col sm={6} className='addTopBorder addBottomBorder'>
                   <Label for="newDirections">Cooking Instructions:</Label>
@@ -66,7 +104,7 @@ export default class AddRecipe extends React.Component {
             </Form>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>Add Recipe</Button>{' '}
+            <Button color="primary" disabled={!this.state.btnEnabled} onClick={this.postNewRecipe}>Add Recipe</Button>{' '}
             <Button color="secondary" onClick={this.toggle}>Cancel</Button>
           </ModalFooter>
         </Modal>
