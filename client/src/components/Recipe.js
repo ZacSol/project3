@@ -39,11 +39,11 @@ export default class Recipe extends Component {
         <div>
             <Card style={{marginTop:'10px'}}>
                 <Row>
-                    <Col xs={2} style={{paddingTop:'6px'}}><DeleteBtn recId={this.props.recId} name={this.props.name} rerender={this.passRender}/></Col>
+                    <Col xs={3} style={{paddingTop:'6px'}}><DeleteBtn recId={this.props.recId} name={this.props.name} rerender={this.passRender}/></Col>
 
-                    <Col xs={8}><h3 className="card-title" onClick={this.toggle}>{this.props.name}</h3></Col>
+                    <Col xs={6}><h3 className="card-title" onClick={this.toggle}>{this.props.name}</h3></Col>
 
-                    <Col xs={2} style={{paddingTop:'6px'}} onClick={()=>this.toggleFavoriteDb(this.props.recId)}>{this.state.favorite ? <Button outline color="secondary" name={this.props.recId}><FontAwesomeIcon icon={['fas','star']} name={this.props.recId}/></Button>:<Button outline color="secondary" name={this.props.recId}><FontAwesomeIcon icon={['far','star']} name={this.props.recId}/></Button>}</Col>
+                    <Col xs={3} style={{paddingTop:'6px'}} onClick={()=>this.toggleFavoriteDb(this.props.recId)}>{this.state.favorite ? <Button outline color="secondary" name={this.props.recId}><FontAwesomeIcon icon={['fas','star']} name={this.props.recId}/></Button>:<Button outline color="secondary" name={this.props.recId}><FontAwesomeIcon icon={['far','star']} name={this.props.recId}/></Button>}</Col>
                 </Row>
                 <Collapse isOpen={this.state.collapse}>
                     <CardBody>
