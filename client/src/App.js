@@ -49,17 +49,13 @@ class App extends Component {
   handleShopListClick=()=>{
     this.setState({showRecipes:false,showFavorites:false,showShopList:true})
   };
-  handleAddItemRerender=()=>{
-    console.log('running in App.js');
-    this.setState({reloadStateItem:!this.state.reloadStateItem})
-  };
   render() {
     return (
       <div className="App" id='backgroundDiv'>
         {this.state.isLoggedIn === false ? <LoginPage handleLogin={this.handleLogin} /> :
           <div>
             <WebNav userId={this.state.userId} handleAddItemRerender={this.handleAddItemRerender} handleRecipeClick={this.handleRecipeClick} handleShopListClick={this.handleShopListClick} handleLogout={this.handleLogout} handleFavoriteClick={this.handleFavoriteClick} />
-            
+
             {this.state.showRecipes === true ? <RecipeBox reloadStateItem={this.state.reloadStateItem} userId={this.state.userId} typeOfRecipes={this.state.typeOfRecipes} /> : null}
 
             {this.state.showFavorites === true ? <RecipeBox reloadStateItem={this.state.reloadStateItem} userId={this.state.userId} typeOfRecipes={this.state.typeOfRecipes} /> : null}
