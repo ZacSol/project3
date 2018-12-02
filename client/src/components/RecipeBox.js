@@ -17,6 +17,9 @@ export default class RecipeBox extends Component{
             // console.log(this.state.recipes)
         });
     };
+    componentWillReceiveProps(){
+        this.getRecipes(this.props.typeOfRecipes);
+    };
     componentDidMount(){
         this.getRecipes(this.props.typeOfRecipes);
     };

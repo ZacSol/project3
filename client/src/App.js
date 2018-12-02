@@ -20,6 +20,7 @@ class App extends Component {
     showFavorites:false,
     showShopList:false,
     typeOfRecipes:'all',
+    refreshFlip:false,
   };
   // grabs user data from login component
   handleLogin=user=>{
@@ -49,14 +50,17 @@ class App extends Component {
   handleShopListClick=()=>{
     this.setState({showRecipes:false,showFavorites:false,showShopList:true})
   };
+  handleStateFlip=()=>{
+    this.setState({refreshFlip:!this.state.refreshFlip});
+  };
   render() {
     return (
       <div className="App" id='backgroundDiv'>
         {this.state.isLoggedIn === false ? <LoginPage handleLogin={this.handleLogin} /> :
           <div>
-            <WebNav userId={this.state.userId} handleAddItemRerender={this.handleAddItemRerender} handleRecipeClick={this.handleRecipeClick} handleShopListClick={this.handleShopListClick} handleLogout={this.handleLogout} handleFavoriteClick={this.handleFavoriteClick} />
+            <WebNav userId={this.state.userId} handleAddItemRerender={this.handleAddItemRerender} handleRecipeClick={this.handleRecipeClick} handleShopListClick={this.handleShopListClick} handleLogout={this.handleLogout} handleFavoriteClick={this.handleFavoriteClick} refreshFlip={this.handleStateFlip}/>
 
-            {this.state.showRecipes === true ? <RecipeBox userId={this.state.userId} typeOfRecipes={this.state.typeOfRecipes} /> : null}
+            {this.state.showRecipes === true ? <RecipeBox userId={this.state.userId} typeOfRecipes={this.state.typeOfRecipes} refreshFlip={this.state.refreshFlip}/> : null}
 
             {this.state.showFavorites === true ? <RecipeBox userId={this.state.userId} typeOfRecipes={this.state.typeOfRecipes} /> : null}
 

@@ -30,7 +30,7 @@ export default class WebNav extends React.Component {
               <NavItem>
                 <NavLink className="text-white" href="#" onClick={()=>{this.props.handleFavoriteClick()}}>Favorites</NavLink>
               </NavItem>
-              <NavItem><AddRecipe userId={this.props.userId} handleAddItemRerender={this.props.handleAddItemRerender}/></NavItem>
+              <NavItem><AddRecipe userId={this.props.userId} refreshFlip={this.props.refreshFlip}/></NavItem>
               {/* <NavItem>
                 <NavLink className="text-white" href="#" onClick={()=>{this.props.handleShopListClick()}}>ShoppingList</NavLink>
               </NavItem> */}
