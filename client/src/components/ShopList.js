@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import * as $ from 'axios';
+// import * as $ from 'axios';
 
 export default class ShopList extends Component{
     state={

@@ -98,7 +98,7 @@ export default class CreateAccModal extends React.Component {
   render() {
     return (
       <div>
-        <a href='#' className='text-primary raiseMeUp' onClick={this.toggle}>Click here to create an account.</a>
+        <Button color="link" onClick={this.toggle}>Click here to create an account.</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Create RecipeBox Account</ModalHeader>
           <ModalBody>

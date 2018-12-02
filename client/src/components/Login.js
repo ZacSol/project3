@@ -44,7 +44,7 @@ export default class Login extends Component{
     render() {
         return (
             <div>
-                <h1 id='welcomeHead'>Welcome to RecipeBox!</h1><br />
+                <h1 id='welcomeHead'>Welcome to RecipeBox!</h1>
                 <Form id='loginForm'>
                     <FormGroup>
                         <Label for="loginUsername"></Label>

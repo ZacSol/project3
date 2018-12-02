@@ -21,6 +21,7 @@ export default class RecipeBox extends Component{
         this.getRecipes(this.props.typeOfRecipes);
     };
     render(){
+        // console.log("recipeBox render")
         return(
             <div>
                 {this.state.recipes.length===0 ? <h1 className="giveBackgroundColor margins10Per">There are no recipes stored yet.</h1> : null }

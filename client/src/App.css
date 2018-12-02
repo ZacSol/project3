@@ -78,6 +78,7 @@ input{
 }
 #welcomeHead{
   font-size: 3rem;
+  margin-top: 0.5rem;
 }
 #newPassCheck,#newPassConfCheck{
   margin-left: 0px;
