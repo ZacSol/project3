@@ -56,9 +56,9 @@ class App extends Component {
           <div>
             <WebNav userId={this.state.userId} handleAddItemRerender={this.handleAddItemRerender} handleRecipeClick={this.handleRecipeClick} handleShopListClick={this.handleShopListClick} handleLogout={this.handleLogout} handleFavoriteClick={this.handleFavoriteClick} />
 
-            {this.state.showRecipes === true ? <RecipeBox reloadStateItem={this.state.reloadStateItem} userId={this.state.userId} typeOfRecipes={this.state.typeOfRecipes} /> : null}
+            {this.state.showRecipes === true ? <RecipeBox userId={this.state.userId} typeOfRecipes={this.state.typeOfRecipes} /> : null}
 
-            {this.state.showFavorites === true ? <RecipeBox reloadStateItem={this.state.reloadStateItem} userId={this.state.userId} typeOfRecipes={this.state.typeOfRecipes} /> : null}
+            {this.state.showFavorites === true ? <RecipeBox userId={this.state.userId} typeOfRecipes={this.state.typeOfRecipes} /> : null}
 
             {this.state.showShopList === true ? <ShopList userId={this.state.userId}/> : null}
           </div>}
