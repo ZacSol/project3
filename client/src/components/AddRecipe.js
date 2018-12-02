@@ -64,12 +64,10 @@ export default class AddRecipe extends React.Component {
     const self=this;
     $.post("/api/recipes/one",newRec)
     .then(function(response){
-      console.log(response)
-      console.log(response.data.success)
+      // console.log(response)
+      // console.log(response.data.success)
       if(response.data.success){
-        // ***************************NOT WORKING*******************************
         self.toggle(); 
-        self.props.handleAddItemRerender();
         self.setState({
           modal: false,
           newName:'',
@@ -77,6 +75,8 @@ export default class AddRecipe extends React.Component {
           newDirections:'',
           btnEnabled:false,
         });
+        console.log('trying to render now');
+        self.props.handleAddItemRerender();
       }else{
         alert("There was an error posting the information.");
       };
