@@ -75,7 +75,7 @@ export default class AddRecipe extends React.Component {
           newDirections:'',
           btnEnabled:false,
         });
-        console.log('trying to render now');
+        // console.log('trying to render now');
         self.props.refreshFlip();
       }else{
         alert("There was an error posting the information.");
