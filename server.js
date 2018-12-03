@@ -17,7 +17,8 @@ if (process.env.NODE_ENV === "production") {
 require('./routes/api-routes')(app);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/recipeBox");
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/recipeBox";
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Start the API server
 app.listen(PORT, function() {
