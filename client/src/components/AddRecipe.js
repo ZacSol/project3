@@ -94,7 +94,7 @@ export default class AddRecipe extends React.Component {
   render() {
     return (
       <div>
-        <NavLink className="text-white" href="#" onClick={this.toggle}>Add Recipe</NavLink>
+        <NavLink className="text-white" href="#" onClick={()=>{this.toggle();this.props.toggle()}}>Add Recipe</NavLink>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Add New Recipe</ModalHeader>
           <ModalBody>
