@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter,Col,Form,FormGroup,Label,Input,NavLink } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter,Col,Form,FormGroup,Label,Input,NavLink,Row } from 'reactstrap';
 import * as $ from 'axios';
 
 
@@ -12,6 +12,7 @@ export default class AddRecipe extends React.Component {
       newIngredients:[],
       newDirections:'',
       btnEnabled:false,
+      oneNewIngredient:"",
     };
 
     this.toggle = this.toggle.bind(this);
@@ -42,6 +43,13 @@ export default class AddRecipe extends React.Component {
     const joined=this.state.newIngredients.concat(ingredient);
     this.setState({newIngredients:joined});
   };
+  handleAddItemBtn=(event)=>{
+    const input=document.getElementById('oneNewIngredient');
+    event.preventDefault();
+    this.addIngredientToList(this.state.oneNewIngredient);
+    input.value="";
+    input.focus();
+  }
   emptyIngredients=(event)=>{
     event.preventDefault();
     this.setState({newIngredients:[]});
@@ -99,17 +107,17 @@ export default class AddRecipe extends React.Component {
               <FormGroup row>
                 <Col sm={6}  className="addRightBorder addTopBorder addBottomBorder">
                   <Label for="newIngredients">Ingredients: <Button color="link" onClick={this.emptyIngredients}>Empty List</Button></Label>
-                  <Input type='text' id='oneNewIngredient' placeholder="Press enter to add ingredient." onKeyPress={this.handleKeyPress}/>
-                  {this.state.newIngredients.map((item,index)=>(
+                  <Row>
+                    <Col xs={9}> <Input type='text' name="oneNewIngredient" id='oneNewIngredient' placeholder="Press enter or click to add." onChange={this.handleInputChange} onKeyPress={this.handleKeyPress}/></Col><Col xs={3}><Button onClick={this.handleAddItemBtn}>Add</Button></Col>
+                  </Row><br/>
+                  {this.state.newIngredients.length>0 ? <div>{this.state.newIngredients.map((item,index)=>(
                     <li key={index}>{item}</li>
-                  ))}
+                  ))}<br/></div> : null}
                 </Col>
                 <Col sm={6} className='addTopBorder addBottomBorder'>
                   <Label for="newDirections">Cooking Instructions:</Label>
-                  <Input type='textarea' name='newDirections' id='newDirections' rows={10} onChange={this.handleInputChange}  style={{marginBottom:'10px'}}/>
-                  {/* {this.newIngredients.map((ingredient,index)=>(
-                    <p>{ingredient}</p>
-                  ))} */}
+                  <Input type='textarea' name='newDirections' id='newDirections' rows={10} onChange={this.handleInputChange}/>
+                  <br/>
                 </Col>
               </FormGroup>
             </Form>
