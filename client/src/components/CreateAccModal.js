@@ -80,7 +80,7 @@ export default class CreateAccModal extends React.Component {
         displayName:this.state.newUsername,
         password:this.state.newPass
     }).then((response)=>{
-        console.log(response)
+        // console.log(response)
     }).catch((error)=>{
         console.log(error)
     });
