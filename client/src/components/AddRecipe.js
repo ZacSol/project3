@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter,Col,Form,FormGroup,Label,Input,NavLink,Row } from 'reactstrap';
 import * as $ from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 
 export default class AddRecipe extends React.Component {
@@ -91,6 +93,12 @@ export default class AddRecipe extends React.Component {
       };
     });
   };
+  removeItem=(index)=>{
+    console.log(index);
+    const newList=this.state.newIngredients;
+    newList.splice(index,1)
+    this.setState({newIngredients:newList})
+  };
   render() {
     return (
       <div>
@@ -112,7 +120,7 @@ export default class AddRecipe extends React.Component {
                     <Col xs={9}> <Input type='text' name="oneNewIngredient" id='oneNewIngredient' placeholder="Press enter or click to add." onChange={this.handleInputChange} onKeyPress={this.handleKeyPress}/></Col><Col xs={3} style={{padding:'0px'}}><Button onClick={this.handleAddItemBtn}>Add</Button></Col>
                   </Row><br/>
                   {this.state.newIngredients.length>0 ? <div>{this.state.newIngredients.map((item,index)=>(
-                    <li key={index}>{item}</li>
+                    <div><Row><Col xs={2}><Button outline color="secondary" onClick={(event)=>{event.preventDefault();this.removeItem(index)}} name={index} style={{padding:'0px 6px'}}><FontAwesomeIcon icon={'times'}/></Button></Col><Col xs={10}><li key={index} style={{listStyle:'none'}}>{item}</li></Col></Row></div>
                   ))}<br/></div> : null}
                 </Col>
                 <Col sm={6} className='addTopBorder addBottomBorder'>
