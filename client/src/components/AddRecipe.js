@@ -115,7 +115,7 @@ export default class AddRecipe extends React.Component {
               </FormGroup>
               <FormGroup row>
                 <Col sm={6}  className="addRightBorder addTopBorder addBottomBorder">
-                  <Label for="newIngredients">Ingredients: <Button color="link" onClick={this.emptyIngredients}>Empty List</Button></Label>
+                  <Label for="newIngredients">Ingredients:</Label>
                   <Row>
                     <Col xs={9}> <Input type='text' name="oneNewIngredient" id='oneNewIngredient' placeholder="Press enter or click to add." onChange={this.handleInputChange} onKeyPress={this.handleKeyPress}/></Col><Col xs={3} style={{padding:'0px'}}><Button onClick={this.handleAddItemBtn}>Add</Button></Col>
                   </Row><br/>
