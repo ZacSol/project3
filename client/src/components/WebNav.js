@@ -15,27 +15,32 @@ export default class WebNav extends React.Component {
     this.setState({
       isOpen: !this.state.isOpen
     });
+  };
+  collapseDown() {
+    this.setState({
+      isOpen: false
+    });
   }
   render() {
     return (
       <div>
         <Navbar color="secondary" dark expand="sm">
-          <NavbarBrand className="text-white" href="#" onClick={()=>{this.props.handleRecipeClick()}}>RecipeBox</NavbarBrand>
+          <NavbarBrand className="text-white" href="#" onClick={()=>{this.collapseDown();this.props.handleRecipeClick()}}>RecipeBox</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink className="text-white" href="#" onClick={()=>{this.props.handleRecipeClick()}}>My Recipes</NavLink>
+                <NavLink className="text-white" href="#" onClick={()=>{this.collapseDown();this.props.handleRecipeClick()}}>My Recipes</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink className="text-white" href="#" onClick={()=>{this.props.handleFavoriteClick()}}>Favorites</NavLink>
+                <NavLink className="text-white" href="#" onClick={()=>{this.collapseDown();this.props.handleFavoriteClick()}}>Favorites</NavLink>
               </NavItem>
-              <NavItem><AddRecipe userId={this.props.userId} refreshFlip={this.props.refreshFlip}/></NavItem>
+              <NavItem><AddRecipe userId={this.props.userId} toggle={this.toggle} refreshFlip={this.props.refreshFlip}/></NavItem>
               {/* <NavItem>
-                <NavLink className="text-white" href="#" onClick={()=>{this.props.handleShopListClick()}}>ShoppingList</NavLink>
+                <NavLink className="text-white" href="#" onClick={()=>{this.toggle();this.props.handleShopListClick()}}>ShoppingList</NavLink>
               </NavItem> */}
               <NavItem>
-                  <NavLink className="text-white" href="#" onClick={()=>{this.props.handleLogout()}}>Logout</NavLink>
+                  <NavLink className="text-white" href="#" onClick={()=>{this.collapseDown();this.props.handleLogout()}}>Logout</NavLink>
               </NavItem>
             </Nav>
           </Collapse>

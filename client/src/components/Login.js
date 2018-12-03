@@ -48,7 +48,7 @@ export default class Login extends Component{
                 <Form id='loginForm'>
                     <FormGroup>
                         <Label for="loginUsername"></Label>
-                        <Input type="text" name="username" placeholder="Username" id="loginUsername" onChange={this.handleInputChange} style={{ textAlign: 'center' }} />
+                        <Input type="text" name="username" placeholder="Username" id="loginUsername" onChange={this.handleInputChange} style={{ textAlign: 'center' }} onKeyPress={this.handleKeypress}/>
                     </FormGroup>
                     <FormGroup>
                         <Label for='loginPassword'></Label>
