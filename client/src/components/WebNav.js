@@ -7,6 +7,7 @@ export default class WebNav extends React.Component {
     super(props);
 
     this.toggle = this.toggle.bind(this);
+    this.collapseDown=this.collapseDown.bind(this);
     this.state = {
       isOpen: false
     };
@@ -20,7 +21,7 @@ export default class WebNav extends React.Component {
     this.setState({
       isOpen: false
     });
-  }
+  };
   render() {
     return (
       <div>
@@ -35,7 +36,7 @@ export default class WebNav extends React.Component {
               <NavItem>
                 <NavLink className="text-white" href="#" onClick={()=>{this.collapseDown();this.props.handleFavoriteClick()}}>Favorites</NavLink>
               </NavItem>
-              <NavItem><AddRecipe userId={this.props.userId} toggle={this.toggle} refreshFlip={this.props.refreshFlip}/></NavItem>
+              <NavItem><AddRecipe userId={this.props.userId} collapseDown={this.collapseDown} refreshFlip={this.props.refreshFlip}/></NavItem>
               {/* <NavItem>
                 <NavLink className="text-white" href="#" onClick={()=>{this.toggle();this.props.handleShopListClick()}}>ShoppingList</NavLink>
               </NavItem> */}

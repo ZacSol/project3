@@ -106,7 +106,7 @@ export default class AddRecipe extends React.Component {
           btnEnabled:false,
         });
         // console.log('trying to render now');
-        self.props.toggle();
+        // self.props.toggle();
         self.props.refreshFlip();
       }else{
         alert("There was an error posting the information.");
@@ -128,7 +128,7 @@ export default class AddRecipe extends React.Component {
   render() {
     return (
       <div>
-        <NavLink className="text-white" href="#" onClick={()=>{this.toggle();this.props.toggle()}}>Add Recipe</NavLink>
+        <NavLink className="text-white" href="#" onClick={()=>{this.toggle();this.props.collapseDown()}}>Add Recipe</NavLink>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} style={{maxWidth:'800px'}}>
           <ModalHeader toggle={this.toggle}>Add New Recipe</ModalHeader>
           <ModalBody>
