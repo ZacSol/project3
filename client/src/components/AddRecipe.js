@@ -129,7 +129,7 @@ export default class AddRecipe extends React.Component {
     return (
       <div>
         <NavLink className="text-white" href="#" onClick={()=>{this.toggle();this.props.toggle()}}>Add Recipe</NavLink>
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} style={{maxWidth:'800px'}}>
           <ModalHeader toggle={this.toggle}>Add New Recipe</ModalHeader>
           <ModalBody>
             <Form>
