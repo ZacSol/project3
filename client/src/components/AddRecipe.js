@@ -125,7 +125,7 @@ export default class AddRecipe extends React.Component {
                 </Col>
                 <Col sm={6} className='addTopBorder addBottomBorder'>
                   <Label for="newDirections">Cooking Instructions:</Label>
-                  <Input type='textarea' name='newDirections' id='newDirections' rows={10} onChange={this.handleInputChange}/>
+                  <Input type='textarea' name='newDirections' id='newDirections' rows={11} onChange={this.handleInputChange}/>
                   <br/>
                 </Col>
               </FormGroup>
