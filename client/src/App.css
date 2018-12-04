@@ -90,3 +90,11 @@ input{
 #loginPage{
   margin:auto 15%;
 }
+#theWebNav{
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+#emptySpace{
+  height:50px;
+}

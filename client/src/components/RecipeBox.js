@@ -27,6 +27,7 @@ export default class RecipeBox extends Component{
         // console.log("recipeBox render")
         return(
             <div>
+                <div id="emptySpace"></div>
                 {this.state.recipes.length===0 ? <h1 className="giveBackgroundColor margins10Per">There are no recipes stored yet.</h1> : null }
                 {this.state.recipes.map((recipe,index)=>{
                     return(

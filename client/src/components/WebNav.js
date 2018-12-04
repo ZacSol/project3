@@ -25,7 +25,7 @@ export default class WebNav extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="secondary" dark expand="sm">
+        <Navbar color="secondary" dark expand="sm" id="theWebNav">
           <NavbarBrand className="text-white" href="#" onClick={()=>{this.collapseDown();this.props.handleRecipeClick()}}>RecipeBox</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
