@@ -52,6 +52,7 @@ export default class AddRecipe extends React.Component {
     this.addIngredientToList(this.state.oneNewIngredient);
     input.value="";
     input.focus();
+    this.enableAddBtn();
   };
   handleKeyPressDir=(event)=>{
     if(event.key==="Enter"){
@@ -73,9 +74,10 @@ export default class AddRecipe extends React.Component {
     this.addDirectionToList(this.state.oneNewDirection);
     input.value="";
     input.focus();
+    this.enableAddBtn();
   };
   enableAddBtn=()=>{
-    if(this.state.newName&&this.state.newIngredients.length>0&&this.state.newDirections){
+    if(this.state.newName&&this.state.oneNewDirection&&this.state.oneNewIngredient){
       this.setState({btnEnabled:true});
     }else{
       this.setState({btnEnabled:false});
