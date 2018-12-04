@@ -11,7 +11,7 @@ const RecipesSchema=new Schema({
         required:"Ingredients are required."
     },
     directions:{
-        type:String,
+        type:Array,
         required:"Cooking Directions are required."
     },
     favorite:{

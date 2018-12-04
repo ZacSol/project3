@@ -12,9 +12,10 @@ export default class AddRecipe extends React.Component {
       modal: false,
       newName:'',
       newIngredients:[],
-      newDirections:'',
+      newDirections:[],
       btnEnabled:false,
       oneNewIngredient:"",
+      oneNewDirection:"",
     };
 
     this.toggle = this.toggle.bind(this);
@@ -51,10 +52,27 @@ export default class AddRecipe extends React.Component {
     this.addIngredientToList(this.state.oneNewIngredient);
     input.value="";
     input.focus();
-  }
-  emptyIngredients=(event)=>{
+  };
+  handleKeyPressDir=(event)=>{
+    if(event.key==="Enter"){
+      event.preventDefault();
+      // console.log("Enter Pressed");
+      // console.log(event.target.value);
+      this.addDirectionToList(event.target.value);
+      event.target.value="";
+    };
+  };
+  addDirectionToList=(direction)=>{
+    // console.log(ingredient);
+    const joined=this.state.newDirections.concat(direction);
+    this.setState({newDirections:joined});
+  };
+  handleAddDirBtn=(event)=>{
+    const input=document.getElementById('oneNewDirection');
     event.preventDefault();
-    this.setState({newIngredients:[]});
+    this.addDirectionToList(this.state.oneNewDirection);
+    input.value="";
+    input.focus();
   };
   enableAddBtn=()=>{
     if(this.state.newName&&this.state.newIngredients.length>0&&this.state.newDirections){
@@ -99,6 +117,12 @@ export default class AddRecipe extends React.Component {
     newList.splice(index,1)
     this.setState({newIngredients:newList})
   };
+  removeDir=(index)=>{
+    console.log(index);
+    const newList=this.state.newDirections;
+    newList.splice(index,1)
+    this.setState({newDirections:newList})
+  };
   render() {
     return (
       <div>
@@ -117,23 +141,26 @@ export default class AddRecipe extends React.Component {
                 <Col sm={6}  className="addRightBorder addTopBorder addBottomBorder">
                   <Label for="newIngredients">Ingredients:</Label>
                   <Row>
-                    <Col xs={9}> <Input type='text' name="oneNewIngredient" id='oneNewIngredient' placeholder="Press enter or click to add." onChange={this.handleInputChange} onKeyPress={this.handleKeyPress}/></Col><Col xs={3} style={{padding:'0px'}}><Button onClick={this.handleAddItemBtn}>Add</Button></Col>
+                    <Col xs={9}> <Input type='text' name="oneNewIngredient" id='oneNewIngredient' placeholder="Pressing enter can add." onChange={this.handleInputChange} onKeyPress={this.handleKeyPress}/></Col><Col xs={3} style={{padding:'0px'}}><Button onClick={this.handleAddItemBtn}>Add</Button></Col>
                   </Row><br/>
                   {this.state.newIngredients.length>0 ? <div>{this.state.newIngredients.map((item,index)=>(
-                    <div><Row><Col xs={2}><Button outline color="secondary" onClick={(event)=>{event.preventDefault();this.removeItem(index)}} name={index} style={{padding:'0px 6px'}}><FontAwesomeIcon icon={'times'}/></Button></Col><Col xs={10}><li key={index} style={{listStyle:'none'}}>{item}</li></Col></Row></div>
+                    <div key={`dirIng${index}`}><Row><Col xs={2}><Button outline color="secondary" onClick={(event)=>{event.preventDefault();this.removeItem(index)}} name={index} style={{padding:'0px 6px'}}><FontAwesomeIcon icon={'times'}/></Button></Col><Col xs={10}><li key={index} style={{listStyle:'none'}}>{item}</li></Col></Row></div>
                   ))}<br/></div> : null}
                 </Col>
                 <Col sm={6} className='addTopBorder addBottomBorder'>
                   <Label for="newDirections">Cooking Instructions:</Label>
-                  <Input type='textarea' name='newDirections' id='newDirections' rows={11} onChange={this.handleInputChange}/>
+                  <Row><Col xs={9}> <Input type='text' name='oneNewDirection' id='oneNewDirection' placeholder="Pressing enter can add." onChange={this.handleInputChange} onKeyPress={this.handleKeyPressDir}/></Col><Col xs={3} style={{padding:'0px'}}><Button onClick={this.handleAddDirBtn}>Add</Button></Col></Row>
                   <br/>
+                  {this.state.newDirections.length>0 ? <div><ol style={{padding:'0px'}}>{this.state.newDirections.map((item,index)=>(
+                    <div key={`dirDiv${index}`}><Row><Col xs={3}><Button outline color="secondary" onClick={(event)=>{event.preventDefault();this.removeDir(index)}} name={index} style={{padding:'0px 6px'}}><FontAwesomeIcon icon={'times'}/></Button></Col><Col xs={9}><li key={index}>{item}</li></Col></Row></div>
+                  ))}<br/></ol></div> : null}
                 </Col>
               </FormGroup>
             </Form>
           </ModalBody>
           <ModalFooter>
             <Button color="primary" disabled={!this.state.btnEnabled} onClick={this.postNewRecipe}>Add Recipe</Button>{' '}
-            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+            <Button color="secondary" onClick={()=>{this.toggle();this.setState({newDirections:[],newIngredients:[],oneNewDirection:"",oneNewIngredient:"",newName:""})}}>Cancel</Button>
           </ModalFooter>
         </Modal>
       </div>
