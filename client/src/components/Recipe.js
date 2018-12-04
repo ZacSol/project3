@@ -48,10 +48,10 @@ export default class Recipe extends Component {
                 <Collapse isOpen={this.state.collapse}>
                     <CardBody>
                         <Row>
-                            <Col sm style={{marginBottom:'25px'}}><h5>Ingredients:</h5><ul>{this.props.ingredients.map((ingredient,index)=>(
+                            <Col sm style={{marginBottom:'25px'}} className="paddingLeft10"><h5>Ingredients:</h5><ul>{this.props.ingredients.map((ingredient,index)=>(
                                 <li key={index}>{ingredient}</li>
                             ))}</ul></Col>
-                            <Col sm><h5>Cooking Directions:</h5><ol>{this.props.directions.map((step,index)=>(
+                            <Col sm className='paddingLeft10'><h5>Cooking Directions:</h5><ol>{this.props.directions.map((step,index)=>(
                                 <li key={index}>{step}</li>
                             ))}</ol></Col>
                         </Row>

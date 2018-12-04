@@ -68,6 +68,9 @@ input{
 .margins10Per{
   margin: 10%;
 }
+.paddingLeft10{
+  padding-left: 10px;
+}
 
 /* IDs */
 #loginForm{
